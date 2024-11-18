@@ -1,4 +1,4 @@
-const TreatmentPlan4 = () => {
+const TreatmentPlan5 = () => {
     return (
       <div className="max-w-4xl mx-auto px-2">
         <table className="border border-gray-300 mx-auto text-sm">
@@ -47,8 +47,8 @@ const TreatmentPlan4 = () => {
               <td className="py-1.5 px-2 border border-gray-300"></td>
               <td className="py-1.5 px-2 border border-gray-300"></td>
               <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300" rowSpan="5"></td>
-              <td className="py-1.5 px-2 border border-gray-300">To turn towards you if asked verbally, by gesture or by running.</td>
+              <td className="py-1.5 px-2 border border-gray-300" rowSpan="3"></td>
+              <td className="py-1.5 px-2 border border-gray-300">To sit on a chair with motor and verbal guidance for 3 minutes while performing one task that begins with one word: release/put together/hold. The period between repetitions of the command should be 5 seconds.</td>
             </tr>
             <tr>
               <td className="py-1.5 px-2 border border-gray-300">2</td>
@@ -61,7 +61,7 @@ const TreatmentPlan4 = () => {
               <td className="py-1.5 px-2 border border-gray-300"></td>
               <td className="py-1.5 px-2 border border-gray-300"></td>
               <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300">To turn towards you when you call his name.</td>
+              <td className="py-1.5 px-2 border border-gray-300">To sit on the chair for 3 minutes while performing one task starting with one word with varying the command, with the period between repeating the commands being 5 seconds. The same words used in the first goal are repeated.</td>
             </tr>
             <tr>
               <td className="py-1.5 px-2 border border-gray-300">3</td>
@@ -74,33 +74,7 @@ const TreatmentPlan4 = () => {
               <td className="py-1.5 px-2 border border-gray-300"></td>
               <td className="py-1.5 px-2 border border-gray-300"></td>
               <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300">To look at the educational tools for a specific task if they are placed in front of him and he is asked to look at them.</td>
-            </tr>
-            <tr>
-              <td className="py-1.5 px-2 border border-gray-300">4</td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300">To raise his head if asked to do so</td>
-            </tr>
-            <tr>
-              <td className="py-1.5 px-2 border border-gray-300">5</td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300"></td>
-              <td className="py-1.5 px-2 border border-gray-300">To move his hand if asked to move it.</td>
+              <td className="py-1.5 px-2 border border-gray-300">To sit on the chair for 5 minutes while performing one task / consisting of one command (unpack the toy\ bring the toy ) (hold the pen), with a period of 5 seconds between repeating the command.</td>
             </tr>
           </tbody>
         </table>
@@ -108,4 +82,4 @@ const TreatmentPlan4 = () => {
     );
   };
   
-  export default TreatmentPlan4;
+  export default TreatmentPlan5;

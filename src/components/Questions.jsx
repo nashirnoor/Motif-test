@@ -6,15 +6,27 @@ const Questions = ({ onComplete }) => {
       q1: '',
       q2: '',
       q3: '',
-      q4: ''
+      q4: '',
+      q5: '',
+      q6: '',
+      q7: '',
+      q8: '',
+      q9: '',
+      q10: '',
     });
     const [showAssessment, setShowAssessment] = useState(false);
   
     const questions = [
-      "respond to one-command commands while sitting in a chair for 5 minutes",
-      "respond to simple instructions consisting of one command",
-      "respond to simple instructions consisting of one command group 1",
-      "respond to simple instructions consisting of one command group 2"
+        "respond to one-command commands while sitting in a chair for 5 minutes",
+        "respond to simple instructions consisting of one command",
+        "respond to simple instructions consisting of one command group 1",
+        "respond to simple instructions consisting of one command group 2",
+        "respond to simple instructions consisting of one command group 3",
+        "respond to complex instructions consisting of one command group 5",
+        "respond to complex 2 instructions consisting of one command group 4",
+        "respond to two complex instructions consisting of one command group 3",
+        "respond to multi instructions consisting of one command group 2",
+        "respond to multi instructions consisting of one command group 5",
     ];
   
     const handleAnswer = (answer) => {

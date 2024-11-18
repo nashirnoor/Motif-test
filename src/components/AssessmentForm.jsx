@@ -1,12 +1,17 @@
 // AssessmentForm.jsx
-import React, { useState, useEffect, useRef } from 'react';
-import PrintView from './PrintView';
-import { useReactToPrint } from 'react-to-print';
+import React, { useState, useEffect } from 'react';
 import { Printer } from 'lucide-react';
 import TreatmentPlan1 from './TreatmentPlan1';
 import TreatmentPlan2 from './TreatmentPlan2';
 import TreatmentPlan3 from './TreatmentPlan3';
 import TreatmentPlan4 from './TreatmentPlan4';
+import TreatmentPlan5 from './TreatmentPlan5';
+import TreatmentPlan6 from './TreatmentPlan6';
+import TreatmentPlan7 from './TreatmentPlan7';
+import TreatmentPlan8 from './TreatmentPlan8';
+import TreatmentPlan9 from './TreatmentPlan9';
+import TreatmentPlan10 from './TreatmentPlan10';
+
 // import PrintableAssessment from './PrintableAssessment';
 
 const AssessmentForm = ({ initialAnswers }) => {
@@ -32,7 +37,13 @@ const AssessmentForm = ({ initialAnswers }) => {
         "respond to one-command commands while sitting in a chair for 5 minutes",
         "respond to simple instructions consisting of one command",
         "respond to simple instructions consisting of one command group 1",
-        "respond to simple instructions consisting of one command group 2"
+        "respond to simple instructions consisting of one command group 2",
+        "respond to simple instructions consisting of one command group 3",
+        "respond to complex instructions consisting of one command group 5",
+        "respond to complex 2 instructions consisting of one command group 4",
+        "respond to two complex instructions consisting of one command group 3",
+        "respond to multi instructions consisting of one command group 2",
+        "respond to multi instructions consisting of one command group 5",
     ];
 
     useEffect(() => {
@@ -82,6 +93,18 @@ const AssessmentForm = ({ initialAnswers }) => {
                     return <TreatmentPlan3 />;
                 case 4:
                     return <TreatmentPlan4 />;
+                case 5:
+                    return <TreatmentPlan5 />;
+                case 6:
+                    return <TreatmentPlan6 />;
+                case 7:
+                    return <TreatmentPlan7 />;
+                case 8:
+                    return <TreatmentPlan8 />;
+                case 9:
+                    return <TreatmentPlan9 />;
+                case 10:
+                    return <TreatmentPlan10 />;
                 default:
                     return null;
             }
@@ -231,39 +254,57 @@ const AssessmentForm = ({ initialAnswers }) => {
                 </div>
             </div>
 
-            <div className="hidden print:block p-6">
+            <div className="hidden print:block w-full px-8 py-6">
                 {/* Logo and Title Section */}
-                <div className="flex justify-between mb-8">
+                <div className="mb-8">
                     <img
                         src="logo.png"
                         alt="ASD Test Logo"
-                        className="h-24 w-auto"
+                        className="h-24 w-auto mb-4"
                     />
-                    <h1 className="text-3xl font-bold flex-grow text-center">Assessment of ASD</h1>
+                    <h1 className="text-3xl font-bold">
+                        Assessment of ADHD
+                    </h1>
                 </div>
+
                 {/* Personal Information */}
-                <div className="mb-8">
-                    <h2 className="text-xl font-bold mb-4 text-center">Personal Information</h2>
-                    <div className="grid grid-cols-2 gap-4 pl-4">
-                        <div>
-                            <p><strong>Name:</strong> {personalInfo.name}</p>
-                            <p><strong>Gender:</strong> {personalInfo.gender}</p>
+                <div className="mb-8 break-inside-avoid">
+                    <h2 className="text-xl font-bold mb-4 border-b-2 pb-2">
+                        Personal Information
+                    </h2>
+                    <div>
+                        <div className="flex">
+                            <div className="w-[120px]"><strong>Name</strong></div>
+                            <div>: {personalInfo.name}</div>
                         </div>
-                        <div>
-                            <p><strong>Date of Birth:</strong> {personalInfo.dob}</p>
-                            <p><strong>Age:</strong> {age.years} years, {age.months} months, {age.days} days</p>
+                        <div className="flex">
+                            <div className="w-[120px]"><strong>Gender</strong></div>
+                            <div>: {personalInfo.gender}</div>
+                        </div>
+                        <div className="flex">
+                            <div className="w-[120px]"><strong>D.O.B</strong></div>
+                            <div>: {personalInfo.dob}</div>
+                        </div>
+                        <div className="flex">
+                            <div className="w-[120px]"><strong>Age</strong></div>
+                            <div>: {age.years} years, {age.months} months, {age.days} days</div>
                         </div>
                     </div>
                 </div>
+
                 {/* Assessment Questions */}
-                <div className="mb-8">
-                    <h2 className="text-xl font-bold mb-4 text-center">Assessment Questions</h2>
-                    <div className="pl-1">
+                <div className="mb-8 break-inside-avoid">
+                    <h2 className="text-xl font-bold mb-4 border-b-2 pb-2">
+                        Assessment Questions
+                    </h2>
+                    <div>
                         {questions.map((question, index) => (
-                            <div key={index} className="mb-4">
-                                <div className="border p-4 rounded">
-                                    <p><strong>Question {index + 1}:</strong> {question}</p>
-                                    <p><strong>Response:</strong> {answers[`q${index + 1}`]}</p>
+                            <div key={index} className="mb-4 pl-0">
+                                <div className="flex">
+                                    <span className="mr-2"><strong>{index + 1}.</strong></span>
+                                    <div>
+                                        <p className="mb-2">{question} - <strong>{answers[`q${index + 1}`].toUpperCase()}</strong></p>
+                                    </div>
                                 </div>
                             </div>
                         ))}
@@ -272,46 +313,68 @@ const AssessmentForm = ({ initialAnswers }) => {
 
                 {/* Background */}
                 {background && (
-                    <div className="mb-8">
-                        <h2 className="text-xl font-bold mb-4 text-center">Background</h2>
-                        <p className="whitespace-pre-wrap border p-4 rounded pl-4">{background}</p>
+                    <div className="mb-8 break-inside-avoid">
+                        <h2 className="text-xl font-bold mb-4 border-b-2 pb-2">
+                            Background
+                        </h2>
+                        <div className="flex mb-2">
+                            {/* <span className="mr-2">•</span> */}
+                            <p className='flex mr-2'>{background}</p>
+                        </div>
                     </div>
                 )}
-                {/* Conducted Tests - Only show if there are tests */}
+
+                {/* Conducted Tests */}
                 {conductedTests.filter(test => test).length > 0 && (
-                    <div className="mb-8">
-                        <h2 className="text-xl font-bold mb-4 text-center">Conducted Tests</h2>
-                        <ul className="list-disc pl-10">
+                    <div className="mb-8 break-inside-avoid">
+                        <h2 className="text-xl font-bold mb-4 border-b-2 pb-2">
+                            Conducted Tests
+                        </h2>
+                        <div>
                             {conductedTests.filter(test => test).map((test, index) => (
-                                <li key={index} className="mb-2">{test}</li>
+                                <div key={index} className="flex mb-2">
+                                    <span className="mr-2">{index + 1}.</span>
+                                    <p>{test}</p>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     </div>
                 )}
-                {/* Recommendations - Only show if there are recommendations */}
+
+                {/* Recommendations */}
                 {recommendations.filter(rec => rec).length > 0 && (
-                    <div className="mb-8">
-                        <h2 className="text-xl font-bold mb-4 text-center">Recommendations</h2>
-                        <ul className="list-disc pl-10">
+                    <div className="mb-8 break-inside-avoid">
+                        <h2 className="text-xl font-bold mb-4 border-b-2 pb-2">
+                            Recommendations
+                        </h2>
+                        <div>
                             {recommendations.filter(rec => rec).map((rec, index) => (
-                                <li key={index} className="mb-2">{rec}</li>
+                                <div key={index} className="flex mb-2">
+                                    <span className="mr-2">{index + 1}.</span>
+                                    <p>{rec}</p>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     </div>
                 )}
-                {/* Treatment Plans - Only show if there are any 'no' answers */}
+
+                {/* Treatment Plans */}
                 {Object.values(answers).some(answer => answer === 'no') && (
                     <div className="mb-8">
-                        <h2 className="text-xl font-bold mb-4 text-center">Treatment Plans</h2>
-                        <div className="pl-4">
+                        <div>
                             {[1, 2, 3, 4].map((questionNumber) => (
                                 <div key={questionNumber}>
                                     {answers[`q${questionNumber}`] === 'no' && (
-                                        <div className="mb-4">
-                                            <h3 className="text-lg font-semibold mb-2">
-                                                Treatment Plan for Question {questionNumber}
-                                            </h3>
-                                            {renderTreatmentPlan(questionNumber)}
+                                        <div className="mb-4 break-inside-avoid-page print:break-inside-avoid-page">
+                                            <div className="flex">
+                                                <span className="mr-2"></span>
+                                                <div>
+                                                    <h3 className="text-lg font-semibold mb-2">
+                                                        Treatment Plan
+                                                    </h3>
+                                                    {renderTreatmentPlan(questionNumber)}
+                                                </div>
+                                            </div>
                                         </div>
                                     )}
                                 </div>
