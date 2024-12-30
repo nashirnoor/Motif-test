@@ -1,5 +1,5 @@
 // AssessmentForm.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useCallback } from 'react';
 import { Printer } from 'lucide-react';
 import TreatmentPlan1 from './TreatmentPlan1';
 import TreatmentPlan2 from './TreatmentPlan2';
@@ -11,6 +11,10 @@ import TreatmentPlan7 from './TreatmentPlan7';
 import TreatmentPlan8 from './TreatmentPlan8';
 import TreatmentPlan9 from './TreatmentPlan9';
 import TreatmentPlan10 from './TreatmentPlan10';
+import axios from 'axios';
+
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 // import PrintableAssessment from './PrintableAssessment';
 
@@ -19,7 +23,13 @@ const AssessmentForm = ({ initialAnswers }) => {
         q1: '',
         q2: '',
         q3: '',
-        q4: ''
+        q4: '',
+        q5: '',
+        q6: '',
+        q7: '',
+        q8: '',
+        q9: '',
+        q10: '',
     });
 
     const [personalInfo, setPersonalInfo] = useState({
@@ -27,24 +37,39 @@ const AssessmentForm = ({ initialAnswers }) => {
         gender: '',
         dob: ''
     });
-
+    const [questions, setQuestions] = useState([]);
     const [age, setAge] = useState({ years: 0, months: 0, days: 0 });
     const [background, setBackground] = useState('');
     const [conductedTests, setConductedTests] = useState(['']);
     const [recommendations, setRecommendations] = useState(['']);
+    const { testId } = useParams();
 
-    const questions = [
-        "respond to one-command commands while sitting in a chair for 5 minutes",
-        "respond to simple instructions consisting of one command",
-        "respond to simple instructions consisting of one command group 1",
-        "respond to simple instructions consisting of one command group 2",
-        "respond to simple instructions consisting of one command group 3",
-        "respond to complex instructions consisting of one command group 5",
-        "respond to complex 2 instructions consisting of one command group 4",
-        "respond to two complex instructions consisting of one command group 3",
-        "respond to multi instructions consisting of one command group 2",
-        "respond to multi instructions consisting of one command group 5",
-    ];
+
+    // const questions = [
+    //     "respond to one-command commands while sitting in a chair for 5 minutes",
+    //     "respond to simple instructions consisting of one command",
+    //     "respond to simple instructions consisting of one command group 1",
+    //     "respond to simple instructions consisting of one command group 2",
+    //     "respond to simple instructions consisting of one command group 3",
+    //     "respond to complex instructions consisting of one command group 5",
+    //     "respond to complex 2 instructions consisting of one command group 4",
+    //     "respond to two complex instructions consisting of one command group 3",
+    //     "respond to multi instructions consisting of one command group 2",
+    //     "respond to multi instructions consisting of one command group 5",
+    // ];
+
+    const fetchQuestions = useCallback(async () => {
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/tests/${testId}/questions/`);
+            setQuestions(response.data);
+        } catch (error) {
+            console.error('Error fetching questions:', error);
+        }
+    }, [testId]);
+    
+    useEffect(() => {
+        fetchQuestions();
+    }, [fetchQuestions]);
 
     useEffect(() => {
         if (personalInfo.dob) {
@@ -114,10 +139,28 @@ const AssessmentForm = ({ initialAnswers }) => {
 
     return (
         <div className="relative">
+             <div className="absolute top-4 left-4 print:hidden">
+        <Link to="/" className="flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-gray-200 text-gray-700 rounded-lg transition-colors duration-200">
+            <svg 
+                className="w-5 h-5" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+            >
+                <path 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round" 
+                    strokeWidth={2} 
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+            </svg>
+            Back
+        </Link>
+    </div>
             {/* Form Section */}
             <div className="print:hidden">
                 <div className="p-6 max-w-4xl mx-auto">
-                    <h1 className="text-2xl font-bold mb-6">Assessment of ASD</h1>
+                    <h1 className="text-2xl font-bold mb-6">Assessment of Questions</h1>
 
                     <div className="mb-8">
                         <table className="w-full border-collapse border">
@@ -132,7 +175,7 @@ const AssessmentForm = ({ initialAnswers }) => {
                                 {questions.map((question, index) => (
                                     <tr key={index}>
                                         <td className="border p-2">{index + 1}</td>
-                                        <td className="border p-2">{question}</td>
+                                        <td className="border p-2">{question.text}</td>
                                         <td className="border p-2">
                                             <div className="w-full p-2">
                                                 {answers[`q${index + 1}`]}
@@ -303,8 +346,9 @@ const AssessmentForm = ({ initialAnswers }) => {
                                 <div className="flex">
                                     <span className="mr-2"><strong>{index + 1}.</strong></span>
                                     <div>
-                                        <p className="mb-2">{question} - <strong>{answers[`q${index + 1}`].toUpperCase()}</strong></p>
-                                    </div>
+                                        <p className="mb-2">
+                                            {question.text} - <strong>{answers[`q${index + 1}`]?.toUpperCase()}</strong>
+                                        </p>                        </div>
                                 </div>
                             </div>
                         ))}
@@ -362,7 +406,7 @@ const AssessmentForm = ({ initialAnswers }) => {
                 {Object.values(answers).some(answer => answer === 'no') && (
                     <div className="mb-8">
                         <div>
-                            {[1, 2, 3, 4].map((questionNumber) => (
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((questionNumber) => (
                                 <div key={questionNumber}>
                                     {answers[`q${questionNumber}`] === 'no' && (
                                         <div className="mb-4 break-inside-avoid-page print:break-inside-avoid-page">
